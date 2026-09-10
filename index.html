@@ -6,8 +6,8 @@
     <title>404 - Nothing to see here</title>
     <style>
         body {
-            background-color: #0d0f12;
-            color: #00ff66;
+            background-color: #050505;
+            color: #ff3333;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
@@ -16,87 +16,115 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            text-shadow: 0 0 5px rgba(0, 255, 102, 0.5);
+            /* Roter, düsterer Glow-Effekt für die Schrift */
+            text-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
         }
 
-        /* Das animierte Auge */
+        /* Das markante, dicke Anime-Auge */
         .eye {
-            width: 120px;
-            height: 80px;
-            background-color: transparent;
-            border: 4px solid #00ff66;
-            border-radius: 50% 0;
+            width: 160px;
+            height: 90px;
+            background-color: #ffffff; /* Weißer Augapfel wie im Bild */
+            /* Sehr dicke, schwarze Konturlinien */
+            border: 8px solid #000000;
+            outline: 4px solid #990000; /* Dunkelrote Außen-Silhouette */
+            border-radius: 75% 0;
             transform: rotate(45deg);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-            margin-bottom: 30px;
-            /* Die neue kontrollierte Animation */
-            animation: wakeUpAndBlink 6s infinite ease-in-out;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+            margin-bottom: 40px;
+            overflow: hidden;
+            /* Animation für das versetzte Öffnen */
+            animation: sharinganWakeUp 7s infinite ease-in-out;
         }
 
+        /* Große, bedrohliche Sharingan-Iris */
         .pupil {
-            width: 35px;
-            height: 35px;
-            background-color: #00ff66;
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(circle, #ff6600 0%, #cc0000 70%, #000000 100%);
+            border: 4px solid #000000;
             border-radius: 50%;
             transform: rotate(-45deg);
-            box-shadow: 0 0 10px #00ff66;
-            /* Die Pupille passt sich dem Schließen an */
-            animation: pupilScale 6s infinite ease-in-out;
+            position: relative;
+            box-shadow: 0 0 15px #ff3333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pupilScale 7s infinite ease-in-out;
         }
 
-        /* Animations-Ablauf (6 Sekunden Gesamtschleife) */
-        @keyframes wakeUpAndBlink {
-            0%, 15% {
-                /* Startet als fast geschlossener Schlitz */
-                transform: rotate(45deg) scaleY(0.05);
+        /* Die typischen schwarzen Tomoe-/Sharingan-Muster im Auge */
+        .pupil::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #000000;
+            border-radius: 50%;
+            /* Simuliert die innere schwarze Struktur */
+            box-shadow: 0 0 0 6px rgba(0,0,0,0.2);
+        }
+
+        /* Animations-Ablauf: Lange geschlossen (nur dicker Strich), geht dann mächtig auf */
+        @keyframes sharinganWakeUp {
+            0%, 25% {
+                /* Startet komplett flach gedrückt -> wirkt wie eine dicke Linie */
+                transform: rotate(45deg) scaleY(0.02);
+                background-color: #000000; /* Versteckt das Weiß im geschlossenen Zustand */
             }
-            30%, 75% {
-                /* Öffnet sich komplett und bleibt offen */
+            35%, 80% {
+                /* Öffnet sich weit und fixiert den Betrachter */
                 transform: rotate(45deg) scaleY(1);
+                background-color: #ffffff;
             }
-            80% {
-                /* Ein schnelles Blinzeln zwischendurch */
-                transform: rotate(45deg) scaleY(0.05);
+            84% {
+                /* Ein schnelles, bedrohliches Blinzeln */
+                transform: rotate(45deg) scaleY(0.02);
+                background-color: #000000;
             }
-            85%, 95% {
+            88%, 94% {
                 /* Wieder offen */
                 transform: rotate(45deg) scaleY(1);
+                background-color: #ffffff;
             }
             100% {
-                /* Schließt sich am Ende der Schleife wieder */
-                transform: rotate(45deg) scaleY(0.05);
+                /* Schließt sich schwerfällig am Ende */
+                transform: rotate(45deg) scaleY(0.02);
+                background-color: #000000;
             }
         }
 
-        /* Verhindert, dass die Pupille im Schlitz das Auge verzerrt */
+        /* Schützt die Iris vor Verzerrungen, wenn das Auge eine Linie ist */
         @keyframes pupilScale {
-            0%, 15%, 80%, 100% {
-                transform: rotate(-45deg) scaleY(0.1);
+            0%, 25%, 84%, 100% {
+                transform: rotate(-45deg) scale(0);
             }
-            30%, 75%, 85%, 95% {
-                transform: rotate(-45deg) scaleY(1);
+            35%, 80%, 88%, 94% {
+                transform: rotate(-45deg) scale(1);
             }
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             margin: 10px 0;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            color: #ff3333;
         }
 
         p {
             font-size: 16px;
-            opacity: 0.8;
-            animation: pulse 2s infinite alternate;
+            color: #ff9999;
+            opacity: 0.9;
+            animation: textPulse 2s infinite alternate;
         }
 
-        @keyframes pulse {
-            from { opacity: 0.5; }
-            to { opacity: 1; }
+        @keyframes textPulse {
+            from { opacity: 0.6; text-shadow: 0 0 5px rgba(255, 51, 51, 0.4); }
+            to { opacity: 1; text-shadow: 0 0 15px rgba(255, 51, 51, 0.9); }
         }
     </style>
 </head>
