@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Nothing to see here</title>
+
+    <!-- DAS SHARINGAN FAVICON ALS SVG INLINE DATA-URL -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUxIiByPSI0OCIgZmlsbD0iIzAwMCIgLz4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MiIgZmlsbD0iI2NjMDAwMCIgLz4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIyNSIgZmlsbD0iI2ZmNDUwMCIgLz4KICA8ZyBmaWxsPSIjMDAwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MCw1MCkiPgogICAgPHBhdGggZD0iTSAwLDAgQyAtMTAsLTE1IC01LC0zNSAwLC00MCBDIC0xNSwtMzUgLTI1LC0xNSAwLDAiIC8+CiAgICA8cGF0aCBkPSJNAwLDAgQyAtMTAsLTE1IC01LC0zNSAwLC00MCBDIC0xNSwtMzUgLTI1LC0xNSAwLDAiIHRyYW5zZm9ybT0icm90YXRlKDEyMCkiIC8+CiAgICA8cGF0aCBkPSJNAwLDAgQyAtMTAsLTE1IC01LC0zNSAwLC00MCBDIC0xNSwtMzUgLTI1LC0xNSAwLDAiIHRyYW5zZm9ybT0icm90YXRlKDI0MCkiIC8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMTAiIC8+CiAgPC9nPgo8L3N2Zz4=">
+
     <style>
         body {
             background-color: #050505;
@@ -16,37 +20,34 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            /* Roter, düsterer Glow-Effekt für die Schrift */
             text-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
         }
 
         /* Das markante, dicke Anime-Auge */
         .eye {
-            width: 160px;
-            height: 90px;
-            background-color: #ffffff; /* Weißer Augapfel wie im Bild */
-            /* Sehr dicke, schwarze Konturlinien */
+            width: 170px;
+            height: 95px;
+            background-color: #ffffff; 
             border: 8px solid #000000;
-            outline: 4px solid #990000; /* Dunkelrote Außen-Silhouette */
+            outline: 4px solid #990000; 
             border-radius: 75% 0;
             transform: rotate(45deg);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.4);
             margin-bottom: 40px;
             overflow: hidden;
-            /* Animation für das versetzte Öffnen */
             animation: sharinganWakeUp 7s infinite ease-in-out;
         }
 
-        /* Große, bedrohliche Sharingan-Iris */
-        .pupil {
-            width: 75px;
-            height: 75px;
-            background: radial-gradient(circle, #ff6600 0%, #cc0000 70%, #000000 100%);
-            border: 4px solid #000000;
+        /* Die rote Mangekyō Iris */
+        .iris {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ff5500 0%, #cc0000 70%, #440000 100%);
+            border: 3px solid #000000;
             border-radius: 50%;
             transform: rotate(-45deg);
             position: relative;
@@ -57,53 +58,75 @@
             animation: pupilScale 7s infinite ease-in-out;
         }
 
-        /* Die typischen schwarzen Tomoe-/Sharingan-Muster im Auge */
-        .pupil::before {
-            content: '';
+        /* Die 3 komplexen Klingen des Mangekyō (über CSS-Pfade generiert) */
+        .blade {
             position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #000000;
-            border-radius: 50%;
-            /* Simuliert die innere schwarze Struktur */
-            box-shadow: 0 0 0 6px rgba(0,0,0,0.2);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Animations-Ablauf: Lange geschlossen (nur dicker Strich), geht dann mächtig auf */
+        .blade::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 38px;
+            background-color: #000000;
+            /* Erzeugt die geschwungene, sichelförmige Klinge */
+            border-radius: 100% 0% 50% 50% / 40% 0% 100% 60%;
+            transform: translateY(-16px) rotate(-15deg);
+        }
+
+        /* Rotation der drei einzelnen Klingen um das Zentrum */
+        .b1 { transform: rotate(0deg); }
+        .b2 { transform: rotate(120deg); }
+        .b3 { transform: rotate(240deg); }
+
+        /* Die tiefschwarze Pupille im Zentrum */
+        .pupil-center {
+            width: 20px;
+            height: 20px;
+            background-color: #000000;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+            box-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+
+        /* Animations-Ablauf: Verbleibt extrem flach gedrückt (schwarzer Strich), klappt dann mächtig auf */
         @keyframes sharinganWakeUp {
-            0%, 25% {
-                /* Startet komplett flach gedrückt -> wirkt wie eine dicke Linie */
+            0%, 30% {
                 transform: rotate(45deg) scaleY(0.02);
-                background-color: #000000; /* Versteckt das Weiß im geschlossenen Zustand */
+                background-color: #000000; 
             }
-            35%, 80% {
-                /* Öffnet sich weit und fixiert den Betrachter */
+            42%, 80% {
                 transform: rotate(45deg) scaleY(1);
                 background-color: #ffffff;
             }
             84% {
-                /* Ein schnelles, bedrohliches Blinzeln */
                 transform: rotate(45deg) scaleY(0.02);
                 background-color: #000000;
             }
             88%, 94% {
-                /* Wieder offen */
                 transform: rotate(45deg) scaleY(1);
                 background-color: #ffffff;
             }
             100% {
-                /* Schließt sich schwerfällig am Ende */
                 transform: rotate(45deg) scaleY(0.02);
                 background-color: #000000;
             }
         }
 
-        /* Schützt die Iris vor Verzerrungen, wenn das Auge eine Linie ist */
+        /* Verhindert Verzerrungen der Iris im geschlossenen Zustand */
         @keyframes pupilScale {
-            0%, 25%, 84%, 100% {
+            0%, 30%, 84%, 100% {
                 transform: rotate(-45deg) scale(0);
             }
-            35%, 80%, 88%, 94% {
+            42%, 80%, 88%, 94% {
                 transform: rotate(-45deg) scale(1);
             }
         }
@@ -131,7 +154,12 @@
 <body>
 
     <div class="eye">
-        <div class="pupil"></div>
+        <div class="iris">
+            <div class="blade b1"></div>
+            <div class="blade b2"></div>
+            <div class="blade b3"></div>
+            <div class="pupil-center"></div>
+        </div>
     </div>
 
     <h1>[ ERROR 404: SITE_NOT_FOUND ]</h1>
